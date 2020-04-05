@@ -1,18 +1,11 @@
 import React from 'react';
+import Piece from './Piece';
 
 const WTR = 'water';
 const SWP = 'swamp';
 const SND = 'sand';
 const MTN = 'mountain';
 const FRST = 'forest';
-
-const bg = {
-  [WTR]: 'rgba(59, 126, 188, 0.8)',
-  [SWP]: 'rgba(58, 25, 62, 0.9)',
-  [SND]: 'rgba(245, 205, 16, 0.8)',
-  [MTN]: 'rgba(136, 145, 135, 0.8)',
-  [FRST]: 'rgba(44, 145, 55, 0.9)',
-};
 const pieces = {
   '1': [[WTR, SWP, SWP], [WTR, SWP, SWP], [WTR, WTR, SND], [WTR, SND, SND], [FRST, FRST, SND], [FRST, FRST, FRST]],
   '2': [[SWP, SWP, SWP], [FRST, SWP, MTN], [FRST, FRST, MTN], [FRST, SND, MTN], [FRST, SND, MTN], [FRST, SND, SND]],
@@ -21,49 +14,6 @@ const pieces = {
   '5': [[SWP, SWP, SND], [SWP, SND, SND], [SWP  , SND, WTR], [MTN, WTR, WTR], [MTN, MTN, WTR], [MTN, MTN, WTR]],
   '6': [[SND, MTN, MTN], [SND, MTN, WTR], [SWP, SWP, WTR], [SWP, SWP, WTR], [SWP, FRST, WTR], [FRST, FRST, FRST]],
 };
-
-const Piece = ({piece, rotate}) => (
-  <span style={{
-    display: 'flex',
-    flexDirection: 'row',
-    transform: `rotateZ(${rotate || 0}deg)`,
-  }}>
-    {piece.map((area, i) => (
-      <span
-        key={area + i}
-        style={{
-          display: 'flex',
-          flexDirection: 'column',
-          marginTop: `${i % 2 !== 0 ? '43px' : 0}`,
-        }}
-      >
-        {area.map((land, j) => (
-          <div style={{
-            display: 'flex',
-            alignContent: 'center',
-            justifyContent: 'center',
-            marginLeft: `${i > 0 ? '-23px' : 0}`,
-            marginTop: `${j > 0 ? '1px' : 0}`,
-          }}>
-            <svg width="100" height="87" viewbox="0 0 100 86.60254037844386">
-              <path fill={bg[land]} d="M0 43.30127018922193L25 0L75 0L100 43.30127018922193L75 86.60254037844386L25 86.60254037844386Z"></path>
-            </svg>
-            {/* {(j === 0 && i === 0) ? (
-              <div
-                style={{position: 'absolute', border: '1px solid red', borderRadius: '10em', width: '480px', height: '480px', background: 'rgba(0, 0, 0, 0.1)'}}
-              />
-            ) : null} */}
-            {(j === 0 && i === 0) && (<div
-              style={{position: 'absolute', fontSize: '28px', textShadow: '0 0 10px #fff'}}
-            >
-              *
-            </div>)}
-          </div>
-        ))}
-      </span>
-    ))}
-  </span>
-);
 
 const Board = () => {
   const [r1, setR1] = React.useState(0);
