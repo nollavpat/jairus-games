@@ -23,18 +23,42 @@ const pieces = {
 };
 
 const Piece = ({piece, rotate}) => (
-  <span style={{display: 'flex', flexDirection: 'row', transform: `rotateZ(${rotate || 0}deg)`}}>
+  <span style={{
+    display: 'flex',
+    flexDirection: 'row',
+    transform: `rotateZ(${rotate || 0}deg)`,
+  }}>
     {piece.map((area, i) => (
       <span
         key={area + i}
-        style={{display: 'flex', flexDirection: 'column', marginTop: `${i % 2 !== 0 ? '40px' : 0}`}}
+        style={{
+          display: 'flex',
+          flexDirection: 'column',
+          marginTop: `${i % 2 !== 0 ? '43px' : 0}`,
+        }}
       >
         {area.map((land, j) => (
-          <button
-            style={{width: '80px', height: '80px', background: bg[land], margin: '1px', fontSize: '28px', textShadow: '0 0 10px #fff'}}
-          >
-            {j === 0 && i === 0 ? '*' : ''}
-          </button>
+          <div style={{
+            display: 'flex',
+            alignContent: 'center',
+            justifyContent: 'center',
+            marginLeft: `${i > 0 ? '-23px' : 0}`,
+            marginTop: `${j > 0 ? '1px' : 0}`,
+          }}>
+            <svg width="100" height="87" viewbox="0 0 100 86.60254037844386">
+              <path fill={bg[land]} d="M0 43.30127018922193L25 0L75 0L100 43.30127018922193L75 86.60254037844386L25 86.60254037844386Z"></path>
+            </svg>
+            {/* {(j === 0 && i === 0) ? (
+              <div
+                style={{position: 'absolute', border: '1px solid red', borderRadius: '10em', width: '480px', height: '480px', background: 'rgba(0, 0, 0, 0.1)'}}
+              />
+            ) : null} */}
+            {(j === 0 && i === 0) && (<div
+              style={{position: 'absolute', fontSize: '28px', textShadow: '0 0 10px #fff'}}
+            >
+              *
+            </div>)}
+          </div>
         ))}
       </span>
     ))}
@@ -63,15 +87,15 @@ const Board = () => {
       <div>
         <div style={{display: 'flex'}}>
           <Piece rotate={r1} piece={pieces[pos1] || pieces['1']} />
-          <Piece rotate={r2} piece={pieces[pos2] || pieces['1']}/>
+          <span style={{marginLeft: '-21px'}}><Piece rotate={r2} piece={pieces[pos2] || pieces['1']} /></span>
         </div>
         <div style={{display: 'flex', marginTop: '-40px'}}>
           <Piece rotate={r3} piece={pieces[pos3] || pieces['1']} />
-          <Piece rotate={r4} piece={pieces[pos4] || pieces['1']} />
+          <span style={{marginLeft: '-21px'}}><Piece rotate={r4} piece={pieces[pos4] || pieces['1']} /></span>
         </div>
         <div style={{display: 'flex', marginTop: '-40px'}}>
           <Piece rotate={r5} piece={pieces[pos5] || pieces['1']} />
-          <Piece rotate={r6} piece={pieces[pos6] || pieces['1']} />
+          <span style={{marginLeft: '-21px'}}><Piece rotate={r6} piece={pieces[pos6] || pieces['1']} /></span>
         </div>
       </div>
       <div style={{marginLeft: '20px'}}>
