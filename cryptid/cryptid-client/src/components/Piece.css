@@ -1,0 +1,19 @@
+.horizontal {
+  display: flex;
+  flex-direction: row;
+}
+
+.rotate {
+  transform: rotateZ(180deg);
+}
+
+.land:nth-child(odd) {
+  display: flex;
+  flex-direction: column;
+}
+
+.land:nth-child(even) {
+  display: flex;
+  flex-direction: column;
+  margin-top: 43px;
+}

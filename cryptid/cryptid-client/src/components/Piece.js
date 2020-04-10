@@ -1,43 +1,23 @@
 import React from 'react';
+import cn from 'classnames';
 import Land from './Land';
-
-const WTR = 'water';
-const SWP = 'swamp';
-const SND = 'sand';
-const MTN = 'mountain';
-const FRST = 'forest';
-const ONE_STEP = '170px';
-const THREE_STEPS = '500px';
-const bg = {
-  [WTR]: 'rgba(59, 126, 188, 0.8)',
-  [SWP]: 'rgba(58, 25, 62, 0.9)',
-  [SND]: 'rgba(245, 205, 16, 0.8)',
-  [MTN]: 'rgba(136, 145, 135, 0.8)',
-  [FRST]: 'rgba(44, 145, 55, 0.9)',
-};
+import './Piece.css';
 
 const Piece = ({piece, rotate}) => {
   return (
-    <span style={{
-      display: 'flex',
-      flexDirection: 'row',
-      transform: `rotateZ(${rotate || 0}deg)`,
-    }}>
-      {piece.map((area, i) => (
+    <span className={cn('horizontal', {'rotate': rotate})}>
+      {piece.map((area, areaIndex) => (
         <span
-          key={area + i}
-          style={{
-            display: 'flex',
-            flexDirection: 'column',
-            marginTop: `${i % 2 !== 0 ? '43px' : 0}`,
-          }}
+          key={areaIndex}
+          className={cn('land')}
         >
-          {area.map((land, j) => (
+          {area.map((land, landIndex) => (
             <Land
               land={land}
-              key={land + j}
-              isTop={j > 0}
-              isRight={i > 0}
+              key={land + landIndex}
+              isTop={landIndex > 0}
+              isRight={areaIndex > 0}
+              isStart={landIndex === 0 && areaIndex === 0}
             />
           ))}
         </span>
